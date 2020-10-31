@@ -26,12 +26,12 @@ public class BeatBox {
         loadSounds();
     }
 
-    public void play(Sound sound) {
+    public void play(Sound sound, float rate) {
         Integer soundId = sound.getSoundId();
         if (soundId == null) {
             return;
         }
-        mSoundPool.play(soundId, 1.0f, 1.0f, 1, 0, 1.0f);
+        mSoundPool.play(soundId, 1.0f, 1.0f, 1, 0, rate);
     }
 
     public void release() {

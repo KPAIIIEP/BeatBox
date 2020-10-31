@@ -1,5 +1,7 @@
 package com.bignerdranch.android.beatbox;
 
+import android.view.View;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,10 +14,12 @@ public class SoundViewModelTest {
     private BeatBox mBeatBox;
     private Sound mSound;
     private SoundViewModel mSubject;
+    private View mView;
 
     @Before
     public void setUp() throws Exception {
         mBeatBox = mock(BeatBox.class);
+        mView = mock(View.class);
         mSound = new Sound("assetPath");
         mSubject = new SoundViewModel(mBeatBox);
         mSubject.setSound(mSound);
@@ -28,7 +32,7 @@ public class SoundViewModelTest {
 
     @Test
     public void callsBeatBoxPlayOnButtonClicked() {
-        mSubject.onButtonClicked();
-        verify(mBeatBox).play(mSound);
+        mSubject.onButtonClicked(mView);
+        verify(mBeatBox).play(mSound, 100);
     }
 }
